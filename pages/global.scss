@@ -2,8 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    width: 100%;
+    min-width: 400px;
+}
+
 .container {
     @apply m-auto;
     @apply px-3;
-    min-width: 350px;
+    min-width: 400px;
 }
