@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoArrowForward } from 'react-icons/io5'
+import RequestQuoteModal from './RequestQuoteModal'
 
 export default function RequestQuoteBlock() {
+    const [openQuote, setOpenQuote] = useState(false)
     return (
         <div className="mt-10 mb-5">
             <h3 className="font-black text-3xl leading-9">
@@ -17,17 +19,19 @@ export default function RequestQuoteBlock() {
                 </p>
 
                 <div className="md:text-right">
-                    <a
-                        href="/contact"
+                    <button
                         className="rounded-full border-2 border-black inline-flex gap-3 py-3 px-7 items-center group"
+                        onClick={() => setOpenQuote(true)}
                     >
                         REQUEST A QUOTE
                         <span className="text-xl -rotate-[50deg] group-hover:-rotate-0 ease-in-out duration-100">
                             <IoArrowForward />
                         </span>
-                    </a>
+                    </button>
                 </div>
             </div>
+
+            <RequestQuoteModal isOpen={openQuote} setIsOpen={setOpenQuote} />
         </div>
     )
 }

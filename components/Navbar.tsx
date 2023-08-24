@@ -5,7 +5,7 @@ export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false)
     return (
         <div className="container flex md:justify-between items-center py-3 flex-wrap flex-[2_2_0%] relative bg-white">
-            <a href="" className="basis-[134px] md:basis-auto">
+            <a href="/" className="basis-[134px] md:basis-auto">
                 <img src="images/Logo.webp" alt="" className="h-12 w-auto" />
             </a>
 
