@@ -1,6 +1,6 @@
+import Banner from '@components/Banner'
+import HomeFeature from '@components/HomeFeature'
 import React from 'react'
-import Banner from '../components/Banner'
-import HomeFeature from '../components/HomeFeature'
 
 export default function index() {
     return (

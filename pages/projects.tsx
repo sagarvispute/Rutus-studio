@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react'
-import Pageheader from '../components/Pageheader'
 import { Tab } from '@headlessui/react'
-import ProjectCard from '../components/ProjectCard'
 import { Pagination } from 'react-headless-pagination'
 import { IoArrowBack, IoArrowForward } from 'react-icons/io5'
-import RequestQuoteBlock from '../components/RequestQuoteBlock'
+import RequestQuoteBlock from '@components/RequestQuoteBlock'
+import Pageheader from '@components/Pageheader'
+import ProjectCard from '@components/ProjectCard'
 
 const categories: any[] = [
     'House Interiors',
@@ -31,7 +31,7 @@ export default function projects() {
             >
                 <Tab.List className="border-b-2 pb-5 mb-8">
                     {categories.map((category) => (
-                        <Tab as={Fragment}>
+                        <Tab as={Fragment} key={category}>
                             {({ selected }) => (
                                 <button
                                     className={`outline-none mr-5 mb-1 ${

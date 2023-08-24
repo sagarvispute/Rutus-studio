@@ -1,5 +1,5 @@
 import React from 'react'
-import { Feature } from '../models/feature.model'
+import { Feature } from '@models/feature.model'
 
 export default function FeatureItem(props: { feature: Feature }) {
     return (

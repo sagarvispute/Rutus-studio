@@ -36,7 +36,7 @@ export default function Navbar() {
                 </li>
             </ul>
 
-            <div className="flex gap-1 basis-[calc(100%-134px)] md:basis-0 justify-end order-2 md:order-3">
+            <div className="flex gap-1 basis-[calc(100%-150px)] md:basis-0 justify-end order-2 md:order-3">
                 <button
                     className="block text-2xl px-2 rounded-full md:hidden"
                     onClick={() => setShowMenu(!showMenu)}
@@ -47,7 +47,9 @@ export default function Navbar() {
                     href="/contact"
                     className="rounded-full border-2 border-black flex gap-3 py-1 px-5 items-center group"
                 >
-                    <span className="hidden md:inline">Contact</span>
+                    <span className="hidden md:inline whitespace-nowrap">
+                        Contact Us
+                    </span>
                     <span className="text-xl -rotate-[50deg] group-hover:-rotate-0 ease-in-out duration-100">
                         <IoArrowForward />
                     </span>
