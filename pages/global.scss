@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 .container {
+    @apply m-auto;
     @apply px-3;
     min-width: 350px;
 }
