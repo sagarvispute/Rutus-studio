@@ -5,9 +5,11 @@ import Footer from '../components/Footer'
 import './global.scss'
 
 export default function App({ Component, pageProps }: AppProps) {
-    return <>
-        <Navbar />
-        <Component {...pageProps} />
-        <Footer />
-    </>
+    return (
+        <>
+            <Navbar />
+            <Component {...pageProps} />
+            <Footer />
+        </>
+    )
 }

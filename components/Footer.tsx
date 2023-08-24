@@ -1,7 +1,9 @@
 import React from 'react'
 
 export default function Footer() {
-  return (
-    <div>Footer</div>
-  )
+    return (
+        <section className="bg-[#316B83] py-10 text-white">
+            <div className="container">Footer</div>
+        </section>
+    )
 }

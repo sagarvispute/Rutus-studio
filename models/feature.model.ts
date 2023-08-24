@@ -1,5 +1,5 @@
 export interface Feature {
-    id: string,
-    title: string,
+    id: string
+    title: string
     description: string
 }
