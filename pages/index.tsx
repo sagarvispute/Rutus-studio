@@ -1,5 +1,7 @@
 import Banner from '@components/Banner'
 import HomeFeature from '@components/HomeFeature'
+import HomeInfo from '@components/HomeInfo'
+import HomeProject from '@components/HomeProject'
 import React from 'react'
 
 export default function index() {
@@ -8,6 +10,10 @@ export default function index() {
             <Banner />
 
             <HomeFeature />
+
+            <HomeInfo />
+
+            <HomeProject />
         </div>
     )
 }
