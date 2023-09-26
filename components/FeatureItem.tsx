@@ -4,7 +4,7 @@ import { Feature } from '@models/feature.model'
 export default function FeatureItem(props: { feature: Feature }) {
     return (
         <div>
-            <span className="text-9xl font-black text-[#E7C69C]">
+            <span className="text-9xl font-black text-[#E7C69C] leading-3">
                 {props.feature.id}
             </span>
             <h4 className="font-bold uppercase -mt-7 ml-10 text-xl">

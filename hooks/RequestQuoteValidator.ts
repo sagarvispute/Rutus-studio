@@ -9,7 +9,7 @@ import {
 } from '@utils/validators'
 import { TouchErrors } from '@utils/ad-hooks.utils'
 
-export const useContactFormValidator = (form: any) => {
+export const useRequestQuoteFormValidator = (form: any) => {
     const [errors, setErrors] = useState<any>({
         name: {
             dirty: false,
@@ -26,12 +26,17 @@ export const useContactFormValidator = (form: any) => {
             error: false,
             message: '',
         },
-        subject: {
+        company: {
             dirty: false,
             error: false,
             message: '',
         },
-        message: {
+        details: {
+            dirty: false,
+            error: false,
+            message: '',
+        },
+        location: {
             dirty: false,
             error: false,
             message: '',
@@ -54,11 +59,11 @@ export const useContactFormValidator = (form: any) => {
             nextErrors = TouchErrors(errors)
         }
 
-        const { name, contact, email, subject, message } = form
+        const { name, contact, email, company, details, location } = form
 
         if (nextErrors.name.dirty && (field ? field === 'name' : true)) {
             const minMessage = minValidator(name.trim(), 3)
-            const maxMessage = maxValidator(name.trim(), 30)
+            const maxMessage = maxValidator(name.trim(), 20)
 
             if (minMessage) nextErrors.name.message = minMessage
             else if (maxMessage) nextErrors.name.message = maxMessage
@@ -104,33 +109,46 @@ export const useContactFormValidator = (form: any) => {
             if (!!emailMessage) isValid = false
         }
 
-        if (nextErrors.subject.dirty && (field ? field === 'subject' : true)) {
-            const requiredMessage = requiredValidator(
-                subject ? subject.toString().trim() : ''
-            )
+        if (nextErrors.company.dirty && (field ? field === 'company' : true)) {
             const maxMessage = maxValidator(
-                subject ? subject.toString().trim() : '',
-                1000
+                company ? company.toString().trim() : '',
+                100
             )
 
-            if (requiredMessage) nextErrors.subject.message = requiredMessage
-            else if (maxMessage) nextErrors.contact.message = maxMessage
+            //if (requiredMessage) nextErrors.company.message = requiredMessage
+            if (maxMessage) nextErrors.company.message = maxMessage
 
-            nextErrors.subject.error =
-                (requiredMessage || maxMessage).length > 0
-            if (!!(requiredMessage || maxMessage)) isValid = false
+            nextErrors.company.error = maxMessage.length > 0
+            if (!!maxMessage) isValid = false
         }
 
-        if (nextErrors.message.dirty && (field ? field === 'message' : true)) {
-            const requiredMessage = requiredValidator(message.trim())
-            const minMessage = minValidator(message.trim(), 10)
-            const maxMessage = maxValidator(message.trim(), 1000)
+        if (nextErrors.details.dirty && (field ? field === 'details' : true)) {
+            const requiredMessage = requiredValidator(details.trim())
+            const minMessage = minValidator(details.trim(), 10)
+            const maxMessage = maxValidator(details.trim(), 1000)
 
-            if (requiredMessage) nextErrors.message.message = requiredMessage
-            else if (minMessage) nextErrors.message.message = minMessage
-            else if (maxMessage) nextErrors.message.message = maxMessage
+            if (requiredMessage) nextErrors.details.message = requiredMessage
+            else if (minMessage) nextErrors.details.message = minMessage
+            else if (maxMessage) nextErrors.details.message = maxMessage
 
-            nextErrors.message.error =
+            nextErrors.details.error =
+                (requiredMessage || minMessage || maxMessage).length > 0
+            if (!!(requiredMessage || minMessage || maxMessage)) isValid = false
+        }
+
+        if (
+            nextErrors.location.dirty &&
+            (field ? field === 'location' : true)
+        ) {
+            const requiredMessage = requiredValidator(location.trim())
+            const minMessage = minValidator(location.trim(), 3)
+            const maxMessage = maxValidator(location.trim(), 50)
+
+            if (requiredMessage) nextErrors.location.message = requiredMessage
+            else if (minMessage) nextErrors.location.message = minMessage
+            else if (maxMessage) nextErrors.location.message = maxMessage
+
+            nextErrors.location.error =
                 (requiredMessage || minMessage || maxMessage).length > 0
             if (!!(requiredMessage || minMessage || maxMessage)) isValid = false
         }

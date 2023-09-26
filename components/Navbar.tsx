@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { IoMenu, IoArrowForward } from 'react-icons/io5'
 
@@ -5,9 +7,15 @@ export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false)
     return (
         <div className="container flex md:justify-between items-center py-3 flex-wrap flex-[2_2_0%] relative bg-white">
-            <a href="/" className="basis-[134px] md:basis-auto">
-                <img src="images/Logo.webp" alt="" className="h-12 w-auto" />
-            </a>
+            <Link href="/" className="basis-[134px] md:basis-auto">
+                <Image
+                    src="/images/Logo.webp"
+                    alt=""
+                    className="h-12 w-auto"
+                    width="134"
+                    height="48"
+                />
+            </Link>
 
             <ul
                 className={`md:flex gap-5 order-3 md:order-2 absolute md:relative top-16 md:top-0 pt-3 md:pt-0 basis-auto left-0 right-0 px-3 bg-white md:bg-transparent ${
@@ -15,24 +23,24 @@ export default function Navbar() {
                 }`}
             >
                 <li>
-                    <a href="/" className="hover:text-[#bf9a6a]">
+                    <Link href="/" className="hover:text-[#bf9a6a]">
                         Home
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/studio" className="hover:text-[#bf9a6a]">
+                    <Link href="/studio" className="hover:text-[#bf9a6a]">
                         The Studio
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/services" className="hover:text-[#bf9a6a]">
+                    <Link href="/services" className="hover:text-[#bf9a6a]">
                         Services
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/projects" className="hover:text-[#bf9a6a]">
+                    <Link href="/projects" className="hover:text-[#bf9a6a]">
                         Projects
-                    </a>
+                    </Link>
                 </li>
             </ul>
 
@@ -43,7 +51,7 @@ export default function Navbar() {
                 >
                     <IoMenu />
                 </button>
-                <a
+                <Link
                     href="/contact"
                     className="rounded-full border-2 border-black flex gap-3 py-1 px-5 items-center group"
                 >
@@ -53,7 +61,7 @@ export default function Navbar() {
                     <span className="text-xl -rotate-[50deg] group-hover:-rotate-0 ease-in-out duration-100">
                         <IoArrowForward />
                     </span>
-                </a>
+                </Link>
             </div>
         </div>
     )

@@ -38,7 +38,7 @@ export const maxValidator = (val: string, count: number): string => {
     return ''
 }
 
-export const ageValidator = (val): string => {
+export const ageValidator = (val: string): string => {
     const age = getAge(val)
 
     if (val && age < 15) {

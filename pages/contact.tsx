@@ -4,12 +4,14 @@ import Pageheader from '@components/Pageheader'
 import { CommonUtils } from '@utils/common.utils'
 import { IoArrowForward } from 'react-icons/io5'
 import RequestQuoteBlock from '@components/RequestQuoteBlock'
+import axios from 'axios'
+import { HttpResponse } from '@models/http-response.model'
 
-export default function contact() {
+export default function Contact() {
     const [form, setForm] = useState({
         name: '',
         email: '',
-        phone: '',
+        contact: '',
         subject: '',
         message: '',
     })
@@ -44,27 +46,55 @@ export default function contact() {
         })
         if (!isValid) return
 
-        alert('form submitted')
+        axios({
+            url: 'http://localhost:4000/contact',
+            method: 'POST',
+            data: form,
+        })
+            // Handle the response from backend here
+            .then((res: any) => {
+                const response: HttpResponse<boolean> = res
+                if (response.status === 'success') {
+                    setForm({
+                        name: '',
+                        contact: '',
+                        email: '',
+                        message: '',
+                        subject: '',
+                    })
+                    alert(response.message)
+                } else {
+                    console.log(res)
+                }
+            })
+
+            // Catch errors if any
+            .catch((err) => {})
     }
 
     return (
         <div className="container py-16">
             <Pageheader title="Contact Us" />
 
-            <div className="grid xl:grid-cols-3 gap-4 mb-14">
+            <div className="grid xl:grid-cols-3 gap-4 mb-24">
                 <form
                     onSubmit={onSubmitForm}
                     ref={contactFormRef}
-                    className="col-span-2 grid md:grid-cols-2 lg:grid-cols-3 gap-3 gap-y-2"
+                    className="col-span-2 grid md:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-2"
                 >
-                    <div>
-                        <label htmlFor="name">Your Name</label>
+                    <div className="mb-2">
+                        <label
+                            htmlFor="name"
+                            className="text-sm text-gray-800 font-medium"
+                        >
+                            Your Name
+                        </label>
                         <input
                             type="text"
                             name="name"
                             id="name"
-                            className="block border-2 border-gray-300 rounded-lg p-2 px-3 w-full mt-1"
-                            placeholder="Lorem Ipsum"
+                            className="block border-[1px] border-gray-300 rounded-md p-2 px-3 w-full text-sm text-gray-600"
+                            placeholder="Your Name"
                             defaultValue={form.name}
                             onChange={onUpdateField}
                             onBlur={onBlurField}
@@ -76,21 +106,23 @@ export default function contact() {
                         )}
                     </div>
 
-                    <div>
-                        <label htmlFor="email">Email</label>
+                    <div className="mb-2">
+                        <label
+                            htmlFor="email"
+                            className="text-sm text-gray-800 font-medium"
+                        >
+                            Email
+                        </label>
                         <input
                             type="text"
                             name="email"
                             id="email"
                             value={form.email}
-                            className="block border-2 border-gray-300 rounded-lg p-2 px-3 w-full mt-1"
-                            placeholder="user@email.com"
+                            className="block border-[1px] border-gray-300 rounded-md p-2 px-3 w-full text-sm text-gray-600"
+                            placeholder="Email"
                             onChange={onUpdateField}
                             onBlur={onBlurField}
                         />
-                        <span className="text-xs text-gray-400">
-                            Provide your company or personal email
-                        </span>
                         {errors.email.dirty && errors.email.error && (
                             <div className="text-red-700 text-xs">
                                 {errors.email.message}
@@ -98,35 +130,45 @@ export default function contact() {
                         )}
                     </div>
 
-                    <div>
-                        <label htmlFor="phone">Contact</label>
+                    <div className="mb-2">
+                        <label
+                            htmlFor="contact"
+                            className="text-sm text-gray-800 font-medium"
+                        >
+                            Contact
+                        </label>
                         <input
                             type="text"
-                            name="phone"
-                            id="phone"
-                            defaultValue={form.phone}
-                            className="block border-2 border-gray-300 rounded-lg p-2 px-3 w-full mt-1"
-                            placeholder="000-000-0000"
+                            name="contact"
+                            id="contact"
+                            defaultValue={form.contact}
+                            className="block border-[1px] border-gray-300 rounded-md p-2 px-3 w-full text-sm text-gray-600"
+                            placeholder="Contact"
                             onChange={onUpdateField}
                             onBlur={onBlurField}
                         />
-                        <span className="text-xs text-gray-400">
-                            Provide your contact number with country code
-                        </span>
-                        {errors.phone.dirty && errors.phone.error && (
+                        {/* <span className="text-xs text-gray-400">
+                            Provide contact with country code
+                        </span> */}
+                        {errors.contact.dirty && errors.contact.error && (
                             <div className="text-red-700 text-xs">
-                                {errors.phone.message}
+                                {errors.contact.message}
                             </div>
                         )}
                     </div>
 
-                    <div className="lg:col-span-2">
-                        <label htmlFor="subject">Contact regarding?</label>
+                    <div className="lg:col-span-2 mb-2">
+                        <label
+                            htmlFor="subject"
+                            className="text-sm text-gray-800 font-medium"
+                        >
+                            Contact regarding?
+                        </label>
                         <select
                             name="subject"
                             id="subject"
                             defaultValue={form.subject}
-                            className="block border-2 border-gray-300 rounded-lg p-2 px-3 w-full mt-1"
+                            className="block border-[1px] border-gray-300 rounded-md p-2 px-3 w-full text-sm text-gray-600"
                             onChange={onUpdateField}
                             onBlur={onBlurField}
                         >
@@ -137,9 +179,9 @@ export default function contact() {
                                 </option>
                             ))}
                         </select>
-                        <span className="text-xs text-gray-400">
+                        {/* <span className="text-xs text-gray-400">
                             Select contacting reason
-                        </span>
+                        </span> */}
                         {errors.subject.dirty && errors.subject.error && (
                             <div className="text-red-700 text-xs">
                                 {errors.subject.message}
@@ -149,17 +191,23 @@ export default function contact() {
 
                     <div className="hidden">&nbsp;</div>
 
-                    <div className="md:col-span-2 lg:col-span-3">
-                        <label htmlFor="message">Message</label>
+                    <div className="md:col-span-2 lg:col-span-3 mb-2">
+                        <label
+                            htmlFor="message"
+                            className="text-sm text-gray-800 font-medium"
+                        >
+                            Message
+                        </label>
                         <textarea
                             name="message"
                             id="message"
                             cols={30}
                             rows={10}
                             value={form.message}
-                            className="block border-2 border-gray-300 rounded-lg p-2 px-3 w-full mt-1"
+                            className="block border-[1px] border-gray-300 rounded-md p-2 px-3 w-full text-sm text-gray-600"
                             onChange={onUpdateField}
                             onBlur={onBlurField}
+                            placeholder="Message"
                         ></textarea>
                         {errors.message.dirty && errors.message.error && (
                             <div className="text-red-700 text-xs">

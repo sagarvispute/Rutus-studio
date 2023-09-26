@@ -91,39 +91,31 @@ export const SharedErrorStates = {
 }
 
 export const TouchErrors = (errors: any) => {
-    return Object.entries(errors).reduce((acc, [field, fieldError]: any) => {
-        acc[field] = {
-            ...fieldError,
-            dirty: true,
-        }
-
-        if (acc['timings'] && acc.hasOwnProperty('timings')) {
-            for (let i = 0; i < CommonUtils.timings.length; i++) {
-                acc['timings'][i].dirty = true
+    return Object.entries(errors).reduce(
+        (acc: any, [field, fieldError]: any) => {
+            acc[field] = {
+                ...fieldError,
+                dirty: true,
             }
-        }
 
-        return acc
-    }, {})
+            return acc
+        },
+        {}
+    )
 }
 
 export const ResetErrors = (errors: any) => {
-    return Object.entries(errors).reduce((acc, [field, fieldError]: any) => {
-        acc[field] = {
-            ...fieldError,
-            dirty: false,
-            error: false,
-            message: '',
-        }
-
-        if (acc['timings'] && acc.hasOwnProperty('timings')) {
-            for (let i = 0; i < CommonUtils.timings.length; i++) {
-                acc['timings'][i].dirty = false
-                acc['timings'][i].error = false
-                acc['timings'][i].message = ''
+    return Object.entries(errors).reduce(
+        (acc: any, [field, fieldError]: any) => {
+            acc[field] = {
+                ...fieldError,
+                dirty: false,
+                error: false,
+                message: '',
             }
-        }
 
-        return acc
-    }, {})
+            return acc
+        },
+        {}
+    )
 }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,10 +7,26 @@
 body {
     width: 100%;
     min-width: 400px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container {
     @apply m-auto;
     @apply px-3;
     min-width: 400px;
+}
+
+.banner-img-block {
+    background-image: url('../public/images/spacejoy-85pCvD-unsplash.jpg');
+}
+
+.info-img-block {
+    background-image: url('../public/images/spacejoy-unsplash.jpg');
+}
+
+.banner-img-block,
+.info-img-block {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }

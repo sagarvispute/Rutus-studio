@@ -13,8 +13,8 @@ const categories: any[] = [
     'Shop interior',
 ]
 
-export default function projects() {
-    const [selectedIndex, setSelectedIndex] = useState(0)
+export default function Projects() {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0)
     const [page, setPage] = React.useState<number>(0)
 
     const handlePageChange = (page: number) => {

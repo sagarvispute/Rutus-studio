@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import {
     IoCallOutline,
@@ -32,13 +34,13 @@ export default function Footer() {
                         <h2 className="text-2xl font-bold mb-4">Social</h2>
                         <ul>
                             <li>
-                                <a href="#">Instagram</a>
+                                <Link href="#">Instagram</Link>
                             </li>
                             <li>
-                                <a href="#">Facebook</a>
+                                <Link href="#">Facebook</Link>
                             </li>
                             <li>
-                                <a href="#">Behance</a>
+                                <Link href="#">Behance</Link>
                             </li>
                         </ul>
                     </div>
@@ -46,25 +48,27 @@ export default function Footer() {
             </div>
 
             <div className="container grid sm:grid-cols-2 lg:grid-cols-2 gap-4 pt-8">
-                <a href="/">
-                    <img
-                        src="images/Logo.webp"
+                <Link href="/">
+                    <Image
+                        src="/images/Logo.webp"
                         alt=""
                         className="h-12 w-auto"
+                        width="134"
+                        height="48"
                     />
-                </a>
+                </Link>
                 <ul className="flex gap-4 justify-end">
                     <li>
-                        <a href="/">Home</a>
+                        <Link href="/">Home</Link>
                     </li>
                     <li>
-                        <a href="/studio">The Studio</a>
+                        <Link href="/studio">The Studio</Link>
                     </li>
                     <li>
-                        <a href="/services">Services</a>
+                        <Link href="/services">Services</Link>
                     </li>
                     <li>
-                        <a href="/projects">Projects</a>
+                        <Link href="/projects">Projects</Link>
                     </li>
                 </ul>
             </div>

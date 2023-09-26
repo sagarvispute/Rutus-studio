@@ -12,7 +12,7 @@ export default function Banner() {
                 at ipsum tortor massa maecenas.
             </h1>
 
-            <div className="bg-red-600 relative h-96 mt-10 rounded-2xl">
+            <div className="bg-red-600 relative h-96 mt-10 rounded-2xl banner-img-block">
                 <div className="bg-white inline-block p-5 absolute rounded-2xl -top-5 -left-5 w-3/4 max-w-lg text-xs">
                     Lorem ipsum dolor sit amet consectetur. Pulvinar nisl proin
                     hendrerit ac risus leo a ante. Metus urna libero commodo
@@ -33,7 +33,12 @@ export default function Banner() {
                 </div>
             </div>
 
-            <RequestQuoteModal isOpen={openQuote} setIsOpen={setOpenQuote} />
+            {openQuote && (
+                <RequestQuoteModal
+                    isOpen={openQuote}
+                    setIsOpen={setOpenQuote}
+                />
+            )}
         </div>
     )
 }
