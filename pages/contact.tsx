@@ -1,13 +1,37 @@
-import React, { useRef, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { useContactFormValidator } from '@hooks/ContactFormValidator'
-import Pageheader from '@components/Pageheader'
 import { CommonUtils } from '@utils/common.utils'
 import { IoArrowForward } from 'react-icons/io5'
-import RequestQuoteBlock from '@components/RequestQuoteBlock'
 import axios from 'axios'
 import { HttpResponse } from '@models/http-response.model'
+import { WebConstants } from '@constants/web-constants'
+import { Dialog, Transition } from '@headlessui/react'
+import Head from 'next/head'
+import dynamic from 'next/dynamic'
+
+const Pageheader = dynamic(() => import('@components/Pageheader'))
+const RequestQuoteBlock = dynamic(() => import('@components/RequestQuoteBlock'))
 
 export default function Contact() {
+    const breadcrumbData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://www.rutustudio.com/',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Contact Us',
+                item: 'https://www.rutustudio.com/contact',
+            },
+        ],
+    }
+
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -15,6 +39,8 @@ export default function Contact() {
         subject: '',
         message: '',
     })
+    const [successMessage, setSuccessMessage] = useState<string>('')
+    const [showMessage, setShowMessage] = useState<boolean>(false)
 
     const contactFormRef = useRef(null)
 
@@ -47,7 +73,7 @@ export default function Contact() {
         if (!isValid) return
 
         axios({
-            url: 'http://localhost:4000/contact',
+            url: `${WebConstants.baseUrl}/${WebConstants.contactUser}`,
             method: 'POST',
             data: form,
         })
@@ -62,18 +88,51 @@ export default function Contact() {
                         message: '',
                         subject: '',
                     })
-                    alert(response.message)
-                } else {
-                    console.log(res)
+                    e.target.reset()
+                    setSuccessMessage(response?.message)
+                    setShowMessage(true)
                 }
             })
-
             // Catch errors if any
             .catch((err) => {})
     }
 
     return (
         <div className="container py-16">
+            <Head>
+                <title>
+                    Contact Rutus Decor Studio | Get in Touch with Our Design
+                    Team
+                </title>
+                <meta
+                    name="description"
+                    content="Have questions or ready to start your interior design project? Contact Rutus Decor Studio today. We're here to turn your ideas into reality."
+                />
+                <meta
+                    property="og:title"
+                    content="Contact Rutus Decor Studio | Get in Touch with Our Design Team"
+                />
+                <meta
+                    property="og:description"
+                    content="Have questions or ready to start your interior design project? Contact Rutus Decor Studio today. We're here to turn your ideas into reality."
+                />
+                <meta
+                    property="twitter:title"
+                    content="Contact Rutus Decor Studio | Get in Touch with Our Design Team"
+                />
+                <meta
+                    property="twitter:description"
+                    content="Have questions or ready to start your interior design project? Contact Rutus Decor Studio today. We're here to turn your ideas into reality."
+                />
+                <script
+                    key="breadcrumb-data"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(breadcrumbData),
+                    }}
+                />
+            </Head>
+
             <Pageheader title="Contact Us" />
 
             <div className="grid xl:grid-cols-3 gap-4 mb-24">
@@ -231,6 +290,32 @@ export default function Contact() {
             </div>
 
             <RequestQuoteBlock />
+
+            <Transition show={showMessage} as={Fragment}>
+                <Dialog
+                    onClose={() => setShowMessage(false)}
+                    className="relative z-50"
+                >
+                    <div className="fixed inset-0 bg-black/60" />
+
+                    <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full items-center justify-center p-4">
+                            <Dialog.Panel className="w-full max-w-md rounded bg-white px-4 py-4">
+                                <Dialog.Title className="font-bold text-xl">
+                                    {successMessage}
+                                </Dialog.Title>
+
+                                <button
+                                    onClick={() => setShowMessage(false)}
+                                    className="mt-3 bg-black text-white py-2 px-4 rounded-sm"
+                                >
+                                    Close
+                                </button>
+                            </Dialog.Panel>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition>
         </div>
     )
 }

@@ -1,69 +1,112 @@
-import Pageheader from '@components/Pageheader'
+import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import React from 'react'
 
+const Pageheader = dynamic(() => import('@components/Pageheader'))
+const RequestQuoteBlock = dynamic(() => import('@components/RequestQuoteBlock'))
+
 export default function Services() {
+    const breadcrumbData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://www.rutustudio.com/',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: `Services`,
+                item: 'https://www.rutustudio.com/services',
+            },
+        ],
+    }
+
     return (
         <div className="container py-16">
+            <Head>
+                <title>
+                    Interior Design Services | Rutus Decor Studio&rsquo;s Expert
+                    Offerings
+                </title>
+                <meta
+                    name="description"
+                    content="Discover our tailored interior design services. Rutus Decor Studio brings innovative ideas to life, creating personalized works of art."
+                />
+                <meta
+                    property="og:title"
+                    content="Interior Design Services | Rutus Decor Studio's Expert Offerings"
+                />
+                <meta
+                    property="og:description"
+                    content="Discover our tailored interior design services. Rutus Decor Studio brings innovative ideas to life, creating personalized works of art."
+                />
+                <meta
+                    property="twitter:title"
+                    content="Interior Design Services | Rutus Decor Studio's Expert Offerings"
+                />
+                <meta
+                    property="twitter:description"
+                    content="Discover our tailored interior design services. Rutus Decor Studio brings innovative ideas to life, creating personalized works of art."
+                />
+                <script
+                    key="breadcrumb-data"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(breadcrumbData),
+                    }}
+                />
+            </Head>
+
             <Pageheader title="Our Services" />
 
-            <p className="mb-5">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry&apos;s standard
-                dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It
-                has survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
+            <p className="mb-10">
+                Our preference as designers is to be brought on to the project
+                as early in the process as possible. We love collaborating with
+                architects and builders to help you create the vision you have
+                for your home. Whether your project is a new build, gut
+                renovation, furnishing, or somewhere in between, full-service
+                design includes:
             </p>
 
-            <p className="mb-5">
-                Contrary to popular belief, Lorem Ipsum is not simply random
-                text. It has roots in a piece of classical Latin literature from
-                45 BC, making it over 2000 years old. Richard McClintock, a
-                Latin professor at Hampden-Sydney College in Virginia, looked up
-                one of the more obscure Latin words, consectetur, from a Lorem
-                Ipsum passage, and going through the cites of the word in
-                classical literature, discovered the undoubtable source. Lorem
-                Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de
-                Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil)
-                by Cicero, written in 45 BC. This book is a treatise on the
-                theory of ethics, very popular during the Renaissance. The first
-                line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;,
-                comes from a line in section 1.10.32.
-            </p>
+            <ul className="list-disc pl-5 mb-24">
+                <li className="mb-3">
+                    A detailed design questionnaire that helps us to understand
+                    the scope and needs of the project, as well as your specific
+                    design style
+                </li>
+                <li className="mb-3">
+                    Design plan including preliminary sketches, CAD drawings and
+                    elevations, and 3D renderings if needed
+                </li>
+                <li className="mb-3">
+                    Close collaboration with architects, contractors, and other
+                    tradespeople
+                </li>
+                <li className="mb-3">
+                    Comprehensive material & finish selections for renovations
+                </li>
+                <li className="mb-3">
+                    Furniture, lighting, accessory selections for furnishings
+                </li>
+                <li className="mb-3">
+                    Detailed specification sheets to track all product costs and
+                    lead times
+                </li>
+                <li className="mb-3">Purchasing and procurement</li>
+                <li className="mb-3">
+                    Project management and regular site visits to monitor design
+                    execution
+                </li>
+                <li>Installation and final touches</li>
+            </ul>
 
-            <p className="mb-5">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don&apos;t look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum, you need to be sure there isn&apos;t anything
-                embarrassing hidden in the middle of text. All the Lorem Ipsum
-                generators on the Internet tend to repeat predefined chunks as
-                necessary, making this the first true generator on the Internet.
-                It uses a dictionary of over 200 Latin words, combined with a
-                handful of model sentence structures, to generate Lorem Ipsum
-                which looks reasonable. The generated Lorem Ipsum is therefore
-                always free from repetition, injected humour, or
-                non-characteristic words etc.
-            </p>
+            <hr className="mb-24" />
 
-            <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters, as opposed to using
-                &apos;Content here, content here&apos;, making it look like
-                readable English. Many desktop publishing packages and web page
-                editors now use Lorem Ipsum as their default model text, and a
-                search for &apos;lorem ipsum&apos; will uncover many web sites
-                still in their infancy. Various versions have evolved over the
-                years, sometimes by accident, sometimes on purpose (injected
-                humour and the like).
-            </p>
+            <RequestQuoteBlock />
         </div>
     )
 }

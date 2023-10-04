@@ -6,16 +6,17 @@ export default function RequestQuoteBlock() {
     const [openQuote, setOpenQuote] = useState(false)
     return (
         <div className="mt-10 mb-5">
-            <h3 className="font-black text-3xl leading-9">
-                Lorem ipsum dolor sit amet consectetur. Diam nunc ac interdum
-                vulputate. Urna amet eu in elementum consequat vel elementum
-                ultrices tellus. Pharetra arcu elit est est fermentum neque.
-            </h3>
+            <h2 className="font-black text-3xl leading-10">
+                Embark on your design journey with Rutus Décor Studio. Request a
+                quote today for bespoke, luxurious interiors that align
+                seamlessly with your unique style and lifestyle, and let us turn
+                your vision into reality.
+            </h2>
 
-            <div className="grid md:grid-cols-2 gap-5 mt-7 leading-5">
+            <div className="grid md:grid-cols-2 gap-5 mt-7 leading-5 items-center">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur. Nunc euismod quis
-                    malesuada egestas. Odio nascetur faucibus urna.
+                    Let&rsquo;s Bring Your Vision to Life – Request a Quote
+                    Today
                 </p>
 
                 <div className="md:text-right">

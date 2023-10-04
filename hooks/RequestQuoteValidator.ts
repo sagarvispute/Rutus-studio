@@ -63,7 +63,7 @@ export const useRequestQuoteFormValidator = (form: any) => {
 
         if (nextErrors.name.dirty && (field ? field === 'name' : true)) {
             const minMessage = minValidator(name.trim(), 3)
-            const maxMessage = maxValidator(name.trim(), 20)
+            const maxMessage = maxValidator(name.trim(), 30)
 
             if (minMessage) nextErrors.name.message = minMessage
             else if (maxMessage) nextErrors.name.message = maxMessage
@@ -104,18 +104,24 @@ export const useRequestQuoteFormValidator = (form: any) => {
 
         if (nextErrors.email.dirty && (field ? field === 'email' : true)) {
             const emailMessage = emailValidator(email.trim())
-            nextErrors.email.error = !!emailMessage
-            nextErrors.email.message = emailMessage
-            if (!!emailMessage) isValid = false
+            const minMessage = minValidator(email.trim(), 3)
+            const maxMessage = maxValidator(email.trim(), 50)
+
+            if (minMessage) nextErrors.email.message = minMessage
+            else if (maxMessage) nextErrors.email.message = maxMessage
+            else if (emailMessage) nextErrors.email.message = emailMessage
+
+            nextErrors.email.error =
+                (emailMessage || minMessage || maxMessage).length > 0
+            if (!!(emailMessage || minMessage || maxMessage)) isValid = false
         }
 
         if (nextErrors.company.dirty && (field ? field === 'company' : true)) {
             const maxMessage = maxValidator(
                 company ? company.toString().trim() : '',
-                100
+                50
             )
 
-            //if (requiredMessage) nextErrors.company.message = requiredMessage
             if (maxMessage) nextErrors.company.message = maxMessage
 
             nextErrors.company.error = maxMessage.length > 0
@@ -125,7 +131,7 @@ export const useRequestQuoteFormValidator = (form: any) => {
         if (nextErrors.details.dirty && (field ? field === 'details' : true)) {
             const requiredMessage = requiredValidator(details.trim())
             const minMessage = minValidator(details.trim(), 10)
-            const maxMessage = maxValidator(details.trim(), 1000)
+            const maxMessage = maxValidator(details.trim(), 1500)
 
             if (requiredMessage) nextErrors.details.message = requiredMessage
             else if (minMessage) nextErrors.details.message = minMessage

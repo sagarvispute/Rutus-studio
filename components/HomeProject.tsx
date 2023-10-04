@@ -1,15 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoArrowForward } from 'react-icons/io5'
 import Carousel from 'react-multi-carousel-18'
 import 'react-multi-carousel-18/lib/styles.css'
 import ProjectCard from './ProjectCard'
 import Link from 'next/link'
-
-interface ProjectCategories {
-    id: string
-    title: string
-    active: boolean
-}
+import { Categories, Project } from '@models/project.model'
+import axios from 'axios'
+import { WebConstants } from '@constants/web-constants'
 
 const responsive = {
     superLargeDesktop: {
@@ -37,31 +34,34 @@ const responsive = {
 }
 
 export default function HomeProject() {
-    const [categories, setCategories] = useState<ProjectCategories[]>([
-        {
-            id: '1',
-            title: 'House Interiors',
-            active: true,
-        },
-        {
-            id: '2',
-            title: 'Office space Interiors',
-            active: false,
-        },
-        {
-            id: '3',
-            title: 'Hotels and resort',
-            active: false,
-        },
-        {
-            id: '4',
-            title: 'Shop interior',
-            active: false,
-        },
-    ])
+    const [categories, setCategories] = useState<Categories[]>([])
+    const [projects, setProjects] = useState<Project[]>([])
 
-    const changeState = (currState: ProjectCategories) => {
-        const newCates: ProjectCategories[] = []
+    useEffect(() => {
+        loadCategories()
+        loadProjects()
+    }, [])
+
+    const loadCategories = () => {
+        axios
+            .get(`${WebConstants.baseUrl}/${WebConstants.allCategories}`)
+            .then((resp) => {
+                if ('' + resp.status == 'success') {
+                    const response = resp.data
+                    const allCate: any = [
+                        {
+                            id: null,
+                            name: 'All',
+                            active: true,
+                        },
+                    ]
+                    setCategories([...allCate, ...response])
+                }
+            })
+    }
+
+    const changeState = (currState: Categories) => {
+        const newCates: Categories[] = []
         categories.forEach((x) => {
             if (x.id === currState.id) {
                 x.active = true
@@ -72,7 +72,25 @@ export default function HomeProject() {
             }
         })
         setCategories(newCates)
-        console.log('load data for ' + currState.title)
+        loadProjects()
+    }
+
+    const loadProjects = () => {
+        const category: Categories = categories.find(
+            (cate: Categories) => cate.active
+        ) as Categories
+        axios
+            .get(
+                `${WebConstants.baseUrl}/${
+                    WebConstants.homeProjects
+                }?&category=${category ? category?.id : null}`
+            )
+            .then((resp) => {
+                if (resp && '' + resp.status == 'success') {
+                    const response = resp.data
+                    setProjects(response)
+                }
+            })
     }
 
     return (
@@ -84,8 +102,8 @@ export default function HomeProject() {
                     projects
                 </h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur. Vel malesuada
-                    egestas eget egestas. Facilisi cursus proin odio dolor id.
+                    Explore Our Remarkable Projects: A Showcase of Inspired
+                    Designs, Craftsmanship, and Unforgettable Spaces.
                 </p>
             </header>
 
@@ -100,12 +118,12 @@ export default function HomeProject() {
                                     key={category.id}
                                 >
                                     <button
-                                        className={`w-full flex items-center justify-between group text-gray-400 py-3 [&.active]:text-black ${
+                                        className={`w-full flex items-center text-left justify-between group text-gray-400 py-3 [&.active]:text-black ${
                                             category.active && 'active'
                                         }`}
                                         onClick={() => changeState(category)}
                                     >
-                                        {category.title}
+                                        {category.name}
                                         <span className="text-xl -rotate-[50deg] group-hover:-rotate-0 ease-in-out duration-100 group-[&.active]:-rotate-0">
                                             <IoArrowForward />
                                         </span>
@@ -127,12 +145,22 @@ export default function HomeProject() {
                         </li>
                     </ul>
                 </div>
-                <div className="sm:col-span-2 lg:col-span-3 mt-10 sm:mt-0">
-                    <Carousel responsive={responsive} itemClass="px-2">
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((x) => (
-                            <ProjectCard key={x} />
-                        ))}
-                    </Carousel>
+                <div className="sm:col-span-2 lg:col-span-3 sm:mt-0 home-projects">
+                    {projects.length ? (
+                        <Carousel
+                            responsive={responsive}
+                            itemClass="px-2 h-full"
+                        >
+                            {projects.map((project: Project) => (
+                                <ProjectCard data={project} key={project.id} />
+                            ))}
+                        </Carousel>
+                    ) : null}
+                    {!projects.length && (
+                        <div className="text-gray-300 text-center text-3xl py-20">
+                            Project not found in this category
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

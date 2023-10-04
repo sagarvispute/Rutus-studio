@@ -5,34 +5,30 @@ import FeatureItem from './FeatureItem'
 const features: Feature[] = [
     {
         id: '01',
-        title: 'residential designing',
-        description:
-            'Lorem ipsum dolor sit amet consectetur. Vel malesuada egestas eget egestas. Facilisi cursus proin odio dolor id. Leo eu amet velit bibendum adipiscing facilisi aenean.',
+        title: 'Residential designing',
+        description: `Rutus Décor Studio crafts luxe interiors, tailored to your style and lifestyle, with collaborative design bringing your vision to life.`,
     },
     {
         id: '02',
         title: 'commercial interior design',
-        description:
-            'Lorem ipsum dolor sit amet consectetur. Venenatis blandit morbi bibendum rhoncus eu arcu. Egestas enim nisl nunc urna lacus blandit eget.',
+        description: `Rutus Décor Studio transforms spaces for enhanced productivity. Our commercial interior design spans offices, retail, and restaurants.`,
     },
     {
         id: '03',
         title: 'container home designs',
-        description:
-            'Lorem ipsum dolor sit amet consectetur. Pellentesque posuere cursus ut volutpat morbi pretium accumsan. Pulvinar turpis etiam scelerisque tortor massa netus volutpat aliquet.',
+        description: `Repurposing materials, like shipping containers, fuels sustainable design with cost-effective, innovative housing."`,
     },
     {
         id: '04',
         title: 'Restaurant / cafe designs',
-        description:
-            'Lorem ipsum dolor sit amet consectetur. Vel malesuada egestas eget egestas. Facilisi cursus proin odio dolor id. Leo eu amet velit bibendum adipiscing facilisi aenean.',
+        description: `At Rutus Décor Studio, we craft unforgettable restaurant atmospheres that embody your brand's theme and sustainability.`,
     },
-    {
+    /* {
         id: '05',
         title: 'Others',
         description:
             'Lorem ipsum dolor sit amet consectetur. Venenatis blandit morbi bibendum rhoncus eu arcu. Egestas enim nisl nunc urna lacus blandit eget.',
-    },
+    }, */
 ]
 
 export default function HomeFeature() {

@@ -8,7 +8,8 @@
         "type-check": "tsc",
         "dev": "node server.js",
         "build": "NODE_ENV=production next build",
-        "start": "NODE_ENV=production node server.js"
+        "start": "NODE_ENV=production node server.js",
+        "export": "next export"
     },
     "dependencies": {
         "@headlessui/react": "^1.7.17",

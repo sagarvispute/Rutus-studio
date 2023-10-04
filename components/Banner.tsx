@@ -7,19 +7,19 @@ export default function Banner() {
 
     return (
         <div className="container pt-10">
-            <h1 className="text-6xl font-black">
-                Lorem ipsum dolor sit amet consectetur. Lacinia ac scelerisque
-                at ipsum tortor massa maecenas.
+            <h1 className="text-4xl md:text-6xl font-black leading-[1.2]">
+                Elevate your living spaces with Rutus Decor Studio. Discover
+                personalized interior design that speaks to your style and
+                needs. Let&rsquo;s redefine your space together
             </h1>
 
-            <div className="bg-red-600 relative h-96 mt-10 rounded-2xl banner-img-block">
-                <div className="bg-white inline-block p-5 absolute rounded-2xl -top-5 -left-5 w-3/4 max-w-lg text-xs">
-                    Lorem ipsum dolor sit amet consectetur. Pulvinar nisl proin
-                    hendrerit ac risus leo a ante. Metus urna libero commodo
-                    velit.
+            <div className="bg-gray-200 relative h-96 mt-10 rounded-3xl banner-img-block">
+                <div className="bg-white inline-block p-5 absolute rounded-3xl -top-5 -left-5 w-3/4 max-w-lg text-xs">
+                    At Rutus Decor Studio, we don&rsquo;t just design interiors,
+                    we create experiences.
                 </div>
 
-                <div className="bg-white inline-block absolute -bottom-5 -right-5 p-5 rounded-2xl">
+                <div className="bg-white inline-block absolute -bottom-5 -right-0 p-5 pr-0 rounded-3xl rounded-tr-none">
                     <button
                         type="button"
                         onClick={() => setOpenQuote(true)}
@@ -33,12 +33,7 @@ export default function Banner() {
                 </div>
             </div>
 
-            {openQuote && (
-                <RequestQuoteModal
-                    isOpen={openQuote}
-                    setIsOpen={setOpenQuote}
-                />
-            )}
+            <RequestQuoteModal isOpen={openQuote} setIsOpen={setOpenQuote} />
         </div>
     )
 }

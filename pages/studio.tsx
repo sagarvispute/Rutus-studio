@@ -1,69 +1,106 @@
-import Pageheader from '@components/Pageheader'
+import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import React from 'react'
 
+const Pageheader = dynamic(() => import('@components/Pageheader'))
+const RequestQuoteBlock = dynamic(() => import('@components/RequestQuoteBlock'))
+
 export default function Studio() {
+    const breadcrumbData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://www.rutustudio.com/',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'The Studio',
+                item: 'https://www.rutustudio.com/studio',
+            },
+        ],
+    }
+
     return (
         <div className="container py-16">
-            <Pageheader title="Know more about Rutus Studio" />
+            <Head>
+                <title>
+                    About Rutus Decor Studio | Interior Design Expertise
+                </title>
+                <meta
+                    name="description"
+                    content="Learn about Rutus Decor Studio and our passion for interior design. Our team of experts is dedicated to transforming your spaces into works of art."
+                />
+                <meta
+                    property="og:title"
+                    content="About Rutus Decor Studio | Interior Design Expertise"
+                />
+                <meta
+                    property="og:description"
+                    content="Learn about Rutus Decor Studio and our passion for interior design. Our team of experts is dedicated to transforming your spaces into works of art."
+                />
+                <meta
+                    property="twitter:title"
+                    content="About Rutus Decor Studio | Interior Design Expertise"
+                />
+                <meta
+                    property="twitter:description"
+                    content="Learn about Rutus Decor Studio and our passion for interior design. Our team of experts is dedicated to transforming your spaces into works of art."
+                />
+                <script
+                    key="breadcrumb-data"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(breadcrumbData),
+                    }}
+                />
+            </Head>
+
+            <Pageheader title="Know more about Rutus Decor Studio" />
 
             <p className="mb-5">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry&apos;s standard
-                dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It
-                has survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
+                Rutus Decor Studio is a distinguished interior design company
+                dedicated to transforming spaces into captivating and functional
+                works of art. With a passion for design excellence, we have been
+                shaping interior environments for clients across the globe. Our
+                commitment to creativity, innovation, and attention to detail
+                sets us apart as leaders in the field of interior design.
             </p>
 
             <p className="mb-5">
-                Contrary to popular belief, Lorem Ipsum is not simply random
-                text. It has roots in a piece of classical Latin literature from
-                45 BC, making it over 2000 years old. Richard McClintock, a
-                Latin professor at Hampden-Sydney College in Virginia, looked up
-                one of the more obscure Latin words, consectetur, from a Lorem
-                Ipsum passage, and going through the cites of the word in
-                classical literature, discovered the undoubtable source. Lorem
-                Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de
-                Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil)
-                by Cicero, written in 45 BC. This book is a treatise on the
-                theory of ethics, very popular during the Renaissance. The first
-                line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;,
-                comes from a line in section 1.10.32.
+                At Rutus Decor Studio, we understand that every project is a
+                unique expression of our client&rsquo;s vision. Our team of
+                talented designers and architects brings a wealth of experience
+                to the table, specializing in crafting bespoke interiors that
+                harmonize aesthetics, comfort, and practicality. From
+                residential sanctuaries to commercial spaces that inspire, we
+                excel in curating personalized solutions that reflect the
+                individuality of each client.
             </p>
 
             <p className="mb-5">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomised words which don&apos;t look even
-                slightly believable. If you are going to use a passage of Lorem
-                Ipsum, you need to be sure there isn&apos;t anything
-                embarrassing hidden in the middle of text. All the Lorem Ipsum
-                generators on the Internet tend to repeat predefined chunks as
-                necessary, making this the first true generator on the Internet.
-                It uses a dictionary of over 200 Latin words, combined with a
-                handful of model sentence structures, to generate Lorem Ipsum
-                which looks reasonable. The generated Lorem Ipsum is therefore
-                always free from repetition, injected humour, or
-                non-characteristic words etc.
+                Our mission at Rutus Decor Studio is to exceed expectations in
+                every project we undertake. We believe that a well-designed
+                space has the power to enrich lives and elevate experiences.
+                With an unwavering commitment to client satisfaction, we
+                collaborate closely with our clients to bring their dreams to
+                life. Rutus Decor Studio is not just about creating beautiful
+                interiors; it&rsquo;s about crafting environments that tell
+                stories, evoke emotions, and stand the test of time.
             </p>
 
-            <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters, as opposed to using
-                &apos;Content here, content here&apos;, making it look like
-                readable English. Many desktop publishing packages and web page
-                editors now use Lorem Ipsum as their default model text, and a
-                search for &apos;lorem ipsum&apos; will uncover many web sites
-                still in their infancy. Various versions have evolved over the
-                years, sometimes by accident, sometimes on purpose (injected
-                humour and the like).
+            <p className="mb-24">
+                Feel free to modify or expand upon these paragraphs to suit
+                Rutus Decor Studio&rsquo;s specific mission and values.
             </p>
+
+            <hr className="mb-24" />
+
+            <RequestQuoteBlock />
         </div>
     )
 }

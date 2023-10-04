@@ -12,6 +12,7 @@ reports/*
 .next/
 .swc/
 .*.env
+out/
 
 # Node
 /node_modules
