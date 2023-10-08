@@ -9,7 +9,7 @@ import {
 
 export default function Footer() {
     return (
-        <section className="bg-[#316B83] py-12 text-white">
+        <section className="bg-[#2B5E73] py-12 text-white">
             <div className="container grid sm:grid-cols-2 lg:grid-cols-9 gap-4">
                 <p className="text-4xl font-bold mb-5 col-span-5 xl:col-span-6">
                     Elevate your spaces with Rutus Decor Studio, where every
@@ -19,7 +19,7 @@ export default function Footer() {
                 <div className="grid sm:grid-cols-2 gap-5 col-span-4 xl:col-span-3">
                     <div>
                         <h2 className="text-2xl font-bold mb-4">Contact me</h2>
-                        <ul className="text-sm">
+                        <ul>
                             <li className="flex items-center gap-2 mb-2">
                                 <IoMailOutline /> info@rutusdecor.com
                             </li>
@@ -87,17 +87,17 @@ export default function Footer() {
                 </ul>
             </div>
 
-            <div className="container text-left pt-14 text-[#87b4c6] text-sm">
+            <div className="container text-left pt-14 text-white text-sm">
                 <p>
                     All rights reserved by{' '}
-                    <Link href="/" className="text-white">
+                    <Link href="/" className="underline underline-offset-2">
                         Rutuja Murade
                     </Link>{' '}
                     and Developed by{' '}
                     <Link
                         href="http://sagarvispute.com/"
                         target="_blank"
-                        className="text-white"
+                        className="underline underline-offset-2"
                     >
                         Sagar Vispute
                     </Link>

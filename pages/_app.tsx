@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 />
                 <meta
                     name="viewport"
-                    content="width=device-width, height=device-height, initial-scale=1"
+                    content="width=device-width, initial-scale=1"
                 />
                 <meta name="theme-color" content="#fbf9f7" />
                 <meta

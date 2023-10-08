@@ -74,9 +74,11 @@ export default function RequestQuoteModal(props: Props) {
                 formData
             )
             .then((resp: any) => {
-                props.setIsOpen(false)
-                setSuccessMessage(resp?.message)
-                setShowMessage(true)
+                if (resp) {
+                    props.setIsOpen(false)
+                    setSuccessMessage(resp?.message)
+                    setShowMessage(true)
+                }
             })
     }
 

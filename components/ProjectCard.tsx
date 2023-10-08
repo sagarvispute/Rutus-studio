@@ -49,7 +49,7 @@ export default function ProjectCard(props: Props) {
                 `${WebConstants.baseUrl}/${WebConstants.getImages}/${props.data.id}`
             )
             .then((res) => {
-                if ('' + res.status == 'success') {
+                if (res && '' + res.status == 'success') {
                     const response = res.data
                     setShowImages(true)
                     setImages(response)

@@ -79,18 +79,20 @@ export default function Contact() {
         })
             // Handle the response from backend here
             .then((res: any) => {
-                const response: HttpResponse<boolean> = res
-                if (response.status === 'success') {
-                    setForm({
-                        name: '',
-                        contact: '',
-                        email: '',
-                        message: '',
-                        subject: '',
-                    })
-                    e.target.reset()
-                    setSuccessMessage(response?.message)
-                    setShowMessage(true)
+                if (res) {
+                    const response: HttpResponse<boolean> = res
+                    if (response.status === 'success') {
+                        setForm({
+                            name: '',
+                            contact: '',
+                            email: '',
+                            message: '',
+                            subject: '',
+                        })
+                        e.target.reset()
+                        setSuccessMessage(response?.message)
+                        setShowMessage(true)
+                    }
                 }
             })
             // Catch errors if any

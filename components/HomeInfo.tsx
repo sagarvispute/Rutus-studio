@@ -3,7 +3,7 @@ import React from 'react'
 export default function HomeInfo() {
     return (
         <section className="container grid sm:grid-cols-3 lg:grid-cols-5 gap-4 pb-28">
-            <div className="lg:col-span-2 bg-red-700 rounded-3xl info-img-block h-72 sm:h-auto mb-8 sm:mb-0">
+            <div className="lg:col-span-2 bg-gray-200 rounded-3xl info-img-block h-72 sm:h-auto mb-8 sm:mb-0">
                 &nbsp;
             </div>
             <div className="sm:col-span-2 lg:col-span-3">

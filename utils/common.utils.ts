@@ -4,16 +4,20 @@ export class CommonUtils {
 
     static ContactSubject: any[] = [
         {
-            title: 'Provide Suggestion',
-            value: 4,
+            title: 'Consultation',
+            value: 1,
         },
         {
-            title: 'Report A Bug',
+            title: 'Residential project',
             value: 2,
         },
         {
-            title: 'Need Help',
+            title: 'Commercial project',
             value: 3,
+        },
+        {
+            title: 'Other',
+            value: 4,
         },
     ]
 }

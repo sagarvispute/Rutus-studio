@@ -46,7 +46,7 @@ export default function HomeProject() {
         axios
             .get(`${WebConstants.baseUrl}/${WebConstants.allCategories}`)
             .then((resp) => {
-                if ('' + resp.status == 'success') {
+                if (resp && '' + resp?.status == 'success') {
                     const response = resp.data
                     const allCate: any = [
                         {
@@ -86,7 +86,7 @@ export default function HomeProject() {
                 }?&category=${category ? category?.id : null}`
             )
             .then((resp) => {
-                if (resp && '' + resp.status == 'success') {
+                if (resp && '' + resp?.status == 'success') {
                     const response = resp.data
                     setProjects(response)
                 }
@@ -94,75 +94,88 @@ export default function HomeProject() {
     }
 
     return (
-        <section className="container pb-16">
-            <header className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-10">
-                <h3 className="text-3xl font-bold leading-none">
-                    My remarkable
-                    <br />
-                    projects
-                </h3>
-                <p>
-                    Explore Our Remarkable Projects: A Showcase of Inspired
-                    Designs, Craftsmanship, and Unforgettable Spaces.
-                </p>
-            </header>
+        <>
+            {categories.length && (
+                <section className="container pb-16">
+                    <header className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-10">
+                        <h3 className="text-3xl font-bold leading-none">
+                            My remarkable
+                            <br />
+                            projects
+                        </h3>
+                        <p>
+                            Explore Our Remarkable Projects: A Showcase of
+                            Inspired Designs, Craftsmanship, and Unforgettable
+                            Spaces.
+                        </p>
+                    </header>
 
-            <div className="flex flex-col-reverse sm:grid sm:grid-cols-3 lg:grid-cols-4 gap-6 pb-10">
-                <div>
-                    <ul>
-                        {categories.map((category, index) => {
-                            const isLast = categories.length - 1 === index
-                            return (
-                                <li
-                                    className={!isLast ? 'border-b-2' : ''}
-                                    key={category.id}
-                                >
-                                    <button
-                                        className={`w-full flex items-center text-left justify-between group text-gray-400 py-3 [&.active]:text-black ${
-                                            category.active && 'active'
-                                        }`}
-                                        onClick={() => changeState(category)}
+                    <div className="flex flex-col-reverse sm:grid sm:grid-cols-3 lg:grid-cols-4 gap-6 pb-10">
+                        <div>
+                            <ul>
+                                {categories.map((category, index) => {
+                                    const isLast =
+                                        categories.length - 1 === index
+                                    return (
+                                        <li
+                                            className={
+                                                !isLast ? 'border-b-2' : ''
+                                            }
+                                            key={category.id}
+                                        >
+                                            <button
+                                                className={`w-full flex items-center text-left justify-between group text-gray-400 py-3 [&.active]:text-black ${
+                                                    category.active && 'active'
+                                                }`}
+                                                onClick={() =>
+                                                    changeState(category)
+                                                }
+                                            >
+                                                {category.name}
+                                                <span className="text-xl -rotate-[50deg] group-hover:-rotate-0 ease-in-out duration-100 group-[&.active]:-rotate-0">
+                                                    <IoArrowForward />
+                                                </span>
+                                            </button>
+                                        </li>
+                                    )
+                                })}
+
+                                <li className="mt-3">
+                                    <Link
+                                        href="/projects"
+                                        className="border-2 border-black w-full flex p-3 rounded-full justify-center text-sm"
                                     >
-                                        {category.name}
-                                        <span className="text-xl -rotate-[50deg] group-hover:-rotate-0 ease-in-out duration-100 group-[&.active]:-rotate-0">
+                                        VIEW ALL PROJECTS
+                                        <span className="text-xl -rotate-[50deg] group-hover:-rotate-0 ease-in-out duration-100">
                                             <IoArrowForward />
                                         </span>
-                                    </button>
+                                    </Link>
                                 </li>
-                            )
-                        })}
-
-                        <li className="mt-3">
-                            <Link
-                                href="/projects"
-                                className="border-2 border-black w-full flex p-3 rounded-full justify-center text-sm"
-                            >
-                                VIEW ALL PROJECTS
-                                <span className="text-xl -rotate-[50deg] group-hover:-rotate-0 ease-in-out duration-100">
-                                    <IoArrowForward />
-                                </span>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className="sm:col-span-2 lg:col-span-3 sm:mt-0 home-projects">
-                    {projects.length ? (
-                        <Carousel
-                            responsive={responsive}
-                            itemClass="px-2 h-full"
-                        >
-                            {projects.map((project: Project) => (
-                                <ProjectCard data={project} key={project.id} />
-                            ))}
-                        </Carousel>
-                    ) : null}
-                    {!projects.length && (
-                        <div className="text-gray-300 text-center text-3xl py-20">
-                            Project not found in this category
+                            </ul>
                         </div>
-                    )}
-                </div>
-            </div>
-        </section>
+                        <div className="sm:col-span-2 lg:col-span-3 sm:mt-0 home-projects">
+                            {projects.length ? (
+                                <Carousel
+                                    responsive={responsive}
+                                    itemClass="px-2 h-full"
+                                >
+                                    {projects.map((project: Project) => (
+                                        <ProjectCard
+                                            data={project}
+                                            key={project.id}
+                                        />
+                                    ))}
+                                </Carousel>
+                            ) : null}
+                            {!projects.length && (
+                                <div className="text-gray-300 text-center text-3xl py-20">
+                                    Project not found in this category
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </section>
+            )}
+        </>
     )
 }

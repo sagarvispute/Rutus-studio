@@ -14,7 +14,7 @@ export default function Banner() {
             </h1>
 
             <div className="bg-gray-200 relative h-96 mt-10 rounded-3xl banner-img-block">
-                <div className="bg-white inline-block p-5 absolute rounded-3xl -top-5 -left-5 w-3/4 max-w-lg text-xs">
+                <div className="bg-white inline-block p-5 absolute rounded-3xl -top-5 -left-5 w-3/4 max-w-lg text-md">
                     At Rutus Decor Studio, we don&rsquo;t just design interiors,
                     we create experiences.
                 </div>

@@ -62,7 +62,7 @@ export default function Projects() {
         axios
             .get(`${WebConstants.baseUrl}/${WebConstants.allCategories}`)
             .then((resp) => {
-                if ('' + resp.status == 'success') {
+                if (resp && '' + resp?.status == 'success') {
                     const response = resp.data
                     const allCate: any = [
                         {
@@ -81,7 +81,7 @@ export default function Projects() {
                 `${WebConstants.baseUrl}/${WebConstants.allProjects}?page=${page}&category=${defaultCategory}`
             )
             .then((resp) => {
-                if (resp && '' + resp.status == 'success') {
+                if (resp && '' + resp?.status == 'success') {
                     const response: PaginationResponse<Project[]> = resp.data
                     setProjects(response.records)
                     setCounts(response.count)
