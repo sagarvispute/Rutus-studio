@@ -16,7 +16,7 @@ export default function index() {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Home',
-                item: 'https://www.rutustudio.com/',
+                item: 'https://rutustudio.com/',
             },
         ],
     }

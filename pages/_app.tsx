@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <meta property="twitter:creator" content="@Rutustudio" />
                 <meta
                     property="twitter:domain"
-                    content="https://www.rutustudio.com"
+                    content="https://rutustudio.com"
                 />
                 <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
                 <link

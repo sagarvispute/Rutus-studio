@@ -14,13 +14,13 @@ export default function Services() {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Home',
-                item: 'https://www.rutustudio.com/',
+                item: 'https://rutustudio.com/',
             },
             {
                 '@type': 'ListItem',
                 position: 2,
                 name: `Services`,
-                item: 'https://www.rutustudio.com/services',
+                item: 'https://rutustudio.com/services',
             },
         ],
     }
